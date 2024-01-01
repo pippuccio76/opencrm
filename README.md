@@ -1,2 +1,2 @@
 # opencrm
-A symply crm
+A symply crm written with codeigniter4
