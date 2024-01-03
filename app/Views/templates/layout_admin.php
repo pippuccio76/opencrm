@@ -86,7 +86,7 @@
               <span class="logo-text ms-2">
                 <!-- dark Logo text -->
                 <img
-                  src=" <?=base_url('/assets/images/openCRM_text.png') ?>"
+                  src=" <?=base_url('/assets/images/openCRM_text.png') ?>" 
                   alt="homepage"
                   class="light-logo mt-1"
                   style='max-width: 70%;'
