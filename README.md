@@ -18,6 +18,7 @@ https://www.codeigniter.com/user_guide/index.html
 - settare nel file .env i dati corretti per l'accesso al db :
 
 	database.default.username = root <- Inserire il proprio username del database
+	
 	database.default.password = root <- Inserire la propria password del database
 
 - eseguire il login con i seguenti dati :
