@@ -23,6 +23,7 @@ https://www.codeigniter.com/user_guide/index.html
 - eseguire il login con i seguenti dati :
 	
 	username : admin@info.it
+	
 	password : !Abcd1234!
 	
 per qualsiasi dubbio contattarmi alla seguente mail :
