@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\EventModel;
+use App\Models\ClientiModel;
 
 class FullcalendarController extends BaseController
 {
@@ -14,7 +15,12 @@ class FullcalendarController extends BaseController
 
     public function index()
     {
+
+        $clienti_model = new ClientiModel();
+
         $data['title'] = 'Calendario Appuntamenti';
+
+        $data['tutti_id_clienti'] = $clienti_model->findAll();
 
         return view('/admin/fullcalendar',$data);
     }
@@ -40,6 +46,8 @@ class FullcalendarController extends BaseController
                 // For add EventModel
             case 'add':
                 $data = [
+
+                    'clienti_id' => $this->request->getVar('clienti_id'),
                     'title' => $this->request->getVar('title'),
                     'start' => $this->request->getVar('start'),
                     'end' => $this->request->getVar('end'),
@@ -51,6 +59,8 @@ class FullcalendarController extends BaseController
                 // For update EventModel        
             case 'update':
                 $data = [
+
+                    'clienti_id' => $this->request->getVar('clienti_id'),
                     'title' => $this->request->getVar('title'),
                     'start' => $this->request->getVar('start'),
                     'end' => $this->request->getVar('end'),

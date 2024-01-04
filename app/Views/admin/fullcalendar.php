@@ -26,16 +26,63 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h5 class="modal-title">Inserisci Appuntamento</h5>
             <button type="button" class="btn-close btn_chiudi" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
 
                 <input type="hidden" id="modal_id" >
+
+                <div class="row mb-2">
+                       <div class="col-md-12">
+
+                            <label>Cliente</label>
+                            <select  class="form-select" id="modal_clienti_id">
+
+                                <?php foreach($tutti_id_clienti as $v):?>
+
+                                    <option value="<?=$v->id  ?>"><?=$v->ragione_sociale?></option>
+
+                                <?php endforeach; ?>
+
+                                
+
+                            </select>
+
+                       </div>
+                      
+                </div>
+
+                <div class="row">
+                       
+                    <div class="col-md-12">
+
+                        <label>Titolo</label>
+                        
+                        <input type="" class="form-control" id="modal_title">    
+                    </div>
+                      
+                </div>
+
+                <div class="row">
+                       
+                        <div class="col-md-6">
+                            <label>Inizio </label>
+                            <input type="text" class="form-control"   id="modal_start"> <br>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Fine</label>
+                            <input type="text" class="form-control"   id="modal_end">  
+
+                       </div>
+                      
+                </div>
+                    
+                    
+                    
                 
-                titolo :<input type="text"  id="modal_title"> <br>
-                Inizio :<input type="text"  id="modal_start"> <br>
-                fine : <input type="text"  id="modal_end">  
 
 
           </div>
@@ -49,7 +96,11 @@
       </div>
     </div>
 
-    <!-- END MODAL -->
+
+
+
+
+
 
 
 <?= $this->endSection() ?>
@@ -149,6 +200,7 @@ $(document).ready(function() {
 
             //imposto i campi del modale
             $('#modal_id').val(event.id); 
+            $('#modal_clienti_id').val(event.clienti_id); 
             $('#modal_title').val(event.title); 
             $('#modal_start').val(moment(event.start,"YYYY-MM-DD HH:mm").format('DD-MM-YYYY HH:mm')); 
             $('#modal_end').val(moment(event.end,"YYYY-MM-DD HH:mm").format('DD-MM-YYYY HH:mm')); 
@@ -173,6 +225,7 @@ $(document).ready(function() {
 
     $( "#modify_event" ).click(function() {
             
+        var clienti_id = $('#modal_clienti_id').val(); 
         var title = $('#modal_title').val(); 
         var data_inizio=$('#modal_start').val(); 
         var data_fine=$('#modal_end').val(); 
@@ -194,6 +247,7 @@ $(document).ready(function() {
                 url: "<?=base_url('admin/eventAjax') ?>",
                 data: {
                     id: id,
+                    clienti_id: clienti_id,
                     title: title,
                     start: start,
                     end: end,
@@ -225,7 +279,8 @@ $(document).ready(function() {
 
 
     $( "#insert_event" ).click(function() {
-            
+
+        var clienti_id = $('#modal_clienti_id').val();       
         var title = $('#modal_title').val(); 
         var data_inizio=$('#modal_start').val(); 
         var data_fine=$('#modal_end').val(); 
@@ -245,6 +300,8 @@ $(document).ready(function() {
             $.ajax({
                 url: "<?=base_url('admin/eventAjax') ?>",
                 data: {
+
+                    clienti_id: clienti_id,
                     title: title,
                     start: start,
                     end: end,
@@ -256,6 +313,7 @@ $(document).ready(function() {
 
                     calendar.fullCalendar('renderEvent', {
                         id: data.id,
+                        clienti_id: clienti_id,
                         title: title,
                         start: start,
                         end: end,
