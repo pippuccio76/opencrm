@@ -18,7 +18,7 @@ class FullcalendarController extends BaseController
 
         $clienti_model = new ClientiModel();
 
-        $data['title'] = 'Calendario Appuntamenti';
+        $data['note'] = 'Calendario Appuntamenti';
 
         $data['tutti_id_clienti'] = $clienti_model->findAll();
 
@@ -29,10 +29,26 @@ class FullcalendarController extends BaseController
     {
         $event = new EventModel();
         // on page load this ajax code block will be run
-        $data = $event->where([
+        $data = $event->select(
+            '
+               
+                events.id,
+                events.start,
+                events.end,
+                events.note ,
+                events.clienti_id,
+                clienti.ragione_sociale as title,
+
+            '
+        )
+        ->where([
             'start >=' => $this->request->getVar('start'),
             'end <='=> $this->request->getVar('end')
-        ])->findAll();
+        ])
+        ->join('clienti','events.clienti_id=clienti.id')
+        ->findAll();
+
+        //log_message('debug','Query :' . $event->getLastQuery());
 
         return json_encode($data);
     }
@@ -48,7 +64,7 @@ class FullcalendarController extends BaseController
                 $data = [
 
                     'clienti_id' => $this->request->getVar('clienti_id'),
-                    'title' => $this->request->getVar('title'),
+                    'note' => $this->request->getVar('note'),
                     'start' => $this->request->getVar('start'),
                     'end' => $this->request->getVar('end'),
                 ];
@@ -61,7 +77,7 @@ class FullcalendarController extends BaseController
                 $data = [
 
                     'clienti_id' => $this->request->getVar('clienti_id'),
-                    'title' => $this->request->getVar('title'),
+                    'note' => $this->request->getVar('note'),
                     'start' => $this->request->getVar('start'),
                     'end' => $this->request->getVar('end'),
                 ];
@@ -69,6 +85,9 @@ class FullcalendarController extends BaseController
                 $event_id = $this->request->getVar('id');
                 
                 $event->update($event_id, $data);
+
+
+                log_message('debug','Query :' . $event->getLastQuery());
 
                 return json_encode($event);
                 break;

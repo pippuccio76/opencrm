@@ -172,7 +172,7 @@ DROP TABLE IF EXISTS `events`;
 CREATE TABLE `events` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `clienti_id` int NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `note` varchar(255) NOT NULL,
   `start` datetime NOT NULL,
   `end` datetime NOT NULL,
   `created_at` datetime DEFAULT NULL,

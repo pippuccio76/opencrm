@@ -59,7 +59,7 @@
 
                         <label>Titolo</label>
                         
-                        <input type="" class="form-control" id="modal_title">    
+                        <input type="" class="form-control" id="modal_note">    
                     </div>
                       
                 </div>
@@ -119,7 +119,7 @@
 $(document).ready(function() {
 
     //svuoto i campi
-    $('#modal_title').val(''); 
+    $('#modal_note').val(''); 
     $('#modal_start').val(''); 
     $('#modal_end').val(''); 
 
@@ -147,6 +147,7 @@ $(document).ready(function() {
         },
         editable: true,
         eventRender: function(event, element, view) {
+            console.log(view);
             if (event.allDay === 'true') {
                 event.allDay = true;
             } else {
@@ -183,7 +184,7 @@ $(document).ready(function() {
             $.ajax({
                 url: "<?=base_url('admin/eventAjax') ?>",
                 data: {
-                    title: event.title,
+                    note: event.note,
                     start: start,
                     end: end,
                     id: event.id,
@@ -198,10 +199,11 @@ $(document).ready(function() {
         },
         eventClick: function(event) {
 
+            console.log(event);
             //imposto i campi del modale
             $('#modal_id').val(event.id); 
             $('#modal_clienti_id').val(event.clienti_id); 
-            $('#modal_title').val(event.title); 
+            $('#modal_note').val(event.note); 
             $('#modal_start').val(moment(event.start,"YYYY-MM-DD HH:mm").format('DD-MM-YYYY HH:mm')); 
             $('#modal_end').val(moment(event.end,"YYYY-MM-DD HH:mm").format('DD-MM-YYYY HH:mm')); 
 
@@ -226,12 +228,12 @@ $(document).ready(function() {
     $( "#modify_event" ).click(function() {
             
         var clienti_id = $('#modal_clienti_id').val(); 
-        var title = $('#modal_title').val(); 
+        var note = $('#modal_note').val(); 
         var data_inizio=$('#modal_start').val(); 
         var data_fine=$('#modal_end').val(); 
         var id=$('#modal_id').val(); 
 
-        if (title) {
+        if (clienti_id) {
 
 
             //data_inizio = new Date(data_inizio);
@@ -248,7 +250,7 @@ $(document).ready(function() {
                 data: {
                     id: id,
                     clienti_id: clienti_id,
-                    title: title,
+                    note: note,
                     start: start,
                     end: end,
                     type: 'update'
@@ -260,7 +262,7 @@ $(document).ready(function() {
                     /*
                     calendar.fullCalendar('renderEvent', {
                         id: data.id,
-                        title: title,
+                        note: note,
                         start: start,
                         end: end,
                     }, true);
@@ -281,11 +283,11 @@ $(document).ready(function() {
     $( "#insert_event" ).click(function() {
 
         var clienti_id = $('#modal_clienti_id').val();       
-        var title = $('#modal_title').val(); 
+        var note = $('#modal_note').val(); 
         var data_inizio=$('#modal_start').val(); 
         var data_fine=$('#modal_end').val(); 
 
-        if (title) {
+        if (clienti_id) {
 
 
             //data_inizio = new Date(data_inizio);
@@ -302,7 +304,7 @@ $(document).ready(function() {
                 data: {
 
                     clienti_id: clienti_id,
-                    title: title,
+                    note: note,
                     start: start,
                     end: end,
                     type: 'add'
@@ -314,7 +316,7 @@ $(document).ready(function() {
                     calendar.fullCalendar('renderEvent', {
                         id: data.id,
                         clienti_id: clienti_id,
-                        title: title,
+                        note: note,
                         start: start,
                         end: end,
                     }, true);
@@ -358,7 +360,7 @@ $(document).ready(function() {
                     /*
                     calendar.fullCalendar('renderEvent', {
                         id: data.id,
-                        title: title,
+                        note: note,
                         start: start,
                         end: end,
                     }, true);
@@ -378,7 +380,7 @@ $(document).ready(function() {
     $( ".btn_chiudi" ).click(function() {
 
         //svuoto i campi
-        $('#modal_title').val(''); 
+        $('#modal_note').val(''); 
         $('#modal_start').val(''); 
         $('#modal_end').val(''); 
     });
