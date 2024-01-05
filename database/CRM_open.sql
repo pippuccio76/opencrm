@@ -181,7 +181,7 @@ CREATE TABLE `events` (
   PRIMARY KEY (`id`),
   KEY `clienti_id` (`clienti_id`),
   CONSTRAINT `events_ibfk_2` FOREIGN KEY (`clienti_id`) REFERENCES `clienti` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 DROP TABLE IF EXISTS `migrations`;
