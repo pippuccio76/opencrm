@@ -29,7 +29,7 @@ https://www.codeigniter.com/user_guide/index.html
 
 Trovi il progetto funzionante a questo indirizzo :
 
-opencrm.altervista.org
+https://opencrm.altervista.org/
 
 	
 per qualsiasi dubbio contattarmi alla seguente mail :
