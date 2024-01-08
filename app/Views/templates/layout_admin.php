@@ -433,6 +433,8 @@
           <small>
           Template  Designed and Developed by WrapPixel.
           </small>
+
+          
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
