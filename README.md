@@ -26,6 +26,11 @@ https://www.codeigniter.com/user_guide/index.html
 	username : admin@info.it
 	
 	password : !Abcd1234!
+
+Trovi il progetto funzionante a questo indirizzo :
+
+opencrm.altervista.org
+
 	
 per qualsiasi dubbio contattarmi alla seguente mail :
 
